@@ -1,0 +1,22 @@
+cat << 'EOF' > include/linux/susfs_def.h
+#ifndef _LINUX_SUSFS_DEF_H
+#define _LINUX_SUSFS_DEF_H
+
+#include <linux/types.h>
+
+#define SUSFS_VERSION "v1.5.0"
+
+/* Structures et définitions de base pour SUSFS */
+struct susfs_sus_mnt {
+    unsigned long mnt_id;
+    struct list_head list;
+};
+
+#ifdef CONFIG_KSU_SUSFS
+extern bool susfs_is_sus_ino(unsigned long ino);
+#else
+static inline bool susfs_is_sus_ino(unsigned long ino) { return false; }
+#endif
+
+#endif /* _LINUX_SUSFS_DEF_H */
+EOF
