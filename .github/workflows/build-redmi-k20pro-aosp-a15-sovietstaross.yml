@@ -55,7 +55,7 @@ env:
 
   KERNELSU_METHOD: "shell" # shell, manual and only.
 
-  PATCHES_SOURCE: "nanix06/NonGKI_Kernel_Build_2nd" # [your_name]/[your_patch] -> gooder123/NonGKI_Patcher
+  PATCHES_SOURCE: "nanix06/NonGKI_Kernel_Build" # [your_name]/[your_patch] -> gooder123/NonGKI_Patcher
   PATCHES_BRANCH: "mainline" # [your_branch] -> main
 
   SUSFS_FOLDER_FIXED: "patches/patch" # Fill in your patch prefix directory here. Leave it blank if there isn't one. -> your_folder
