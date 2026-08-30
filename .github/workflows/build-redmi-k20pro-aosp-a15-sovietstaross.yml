@@ -1,31 +1,30 @@
-name: Build Redmi K20 Pro (Based-AOSP A15) (Soviet-Star-OSS)
-
+name: Build Redmi note 10
 on:
   workflow_call:
   workflow_dispatch:
 
 env:
   # Device env
-  DEVICE_NAME : "redmi_k20_pro"
-  DEVICE_CODENAME : "raphael"
+  DEVICE_NAME : "redmi_note_10"
+  DEVICE_CODENAME : "mojito"
 
   CUSTOM_CMDS : "CLANG_TRIPLE=aarch64-linux-gnu-"
   EXTRA_CMDS : "LLVM=1 LLVM_IAS=1"
 
-  KERNEL_SOURCE : "https://github.com/JackA1ltman/kernel_xiaomi_raphael_noksu.git"
-  KERNEL_BRANCH : "15.0"
+  KERNEL_SOURCE : "https://github.com/ximi-mojito/android_kernel_xiaomi_mojito.git"
+  KERNEL_BRANCH : "16.2"
 
-  CLANG_SOURCE : "https://raw.githubusercontent.com/Neutron-Toolchains/antman/main/antman"
-  CLANG_BRANCH : ""
+  CLANG_SOURCE : "https://github.com/bachnxuan/aosp_clang_mirror/releases/download/clang-r563880c-13989888/clang-r563880c.tar.gz"
+  CLANG_BRANCH : "lineage-20.0"
 
   GCC_GNU : false
-  GCC_64_SOURCE : ""
-  GCC_64_BRANCH : ""
-  GCC_32_SOURCE : ""
-  GCC_32_BRANCH : ""
+  GCC_64_SOURCE : "https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9.git"
+  GCC_64_BRANCH : "android12L-release"
+  GCC_32_SOURCE : "https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9.git"
+  GCC_32_BRANCH : "android12L-release"
 
   DEFCONFIG_SOURCE: ""
-  DEFCONFIG_NAME : "raphael_defconfig"
+  DEFCONFIG_NAME : "mojito_defconfig"
   DEFCONFIG_ORIGIN_IMAGE: ""
   DEFCONFIG_FROM_BOOT: false
 
@@ -33,10 +32,10 @@ env:
   KERNELSU_BRANCH : ""
 
   KERNELSU_AUTO_GET : "true"
-  KERNELSU_AUTO_FORK : "resukisu" # xxksu, rsuntk , next, resukisu and sukisu
+  KERNELSU_AUTO_FORK : "xxksu" # xxksu, rsuntk , next, resukisu and sukisu
 
   SUSFS_ENABLE : true
-  SUSFS_FIXED : true
+  SUSFS_FIXED : false
 
   AK3_SOURCE : "https://github.com/SOVIET-ANDROID/AnyKernel3.git"
   AK3_BRANCH : "master"
@@ -46,7 +45,7 @@ env:
   NEED_DTBO : false
   NEED_SAFE_DTBO : false
 
-  ROM_TEXT : "based_aosp_a15"
+  ROM_TEXT : "infinityx"
 
   # Other env
   PYTHON_VERSION: "3" # Only 2(Ubuntu 22.04 and Ubuntu 20.04) or 3(Any OS Versions).
@@ -59,8 +58,8 @@ env:
   PATCHES_SOURCE: "JackA1ltman/NonGKI_Kernel_Patches" # [your_name]/[your_patch] -> gooder123/NonGKI_Patcher
   PATCHES_BRANCH: "mi_kernel" # [your_branch] -> main
 
-  SUSFS_FOLDER_FIXED: "k20p_aosp_sovietstar_a15" # Fill in your patch prefix directory here. Leave it blank if there isn't one. -> your_folder
-  SUSFS_PATCH_FIXED: "susfs_fixed" # Fill in your patches here. If there are multiple patches, please separate them with a comma. Leave it blank if there isn't one. -> patch1,patch2
+  SUSFS_FOLDER_FIXED: "" # Fill in your patch prefix directory here. Leave it blank if there isn't one. -> your_folder
+  SUSFS_PATCH_FIXED: "" # Fill in your patches here. If there are multiple patches, please separate them with a comma. Leave it blank if there isn't one. -> patch1,patch2
 
   REKERNEL_ENABLE: "false" # if u need Re:Kernel.
   DROIDSPACES_ENABLE: "false" # if u need Droidspaces or LXC/Docker.
@@ -85,13 +84,13 @@ env:
   SKIP_PATCH: "false" # Ignore errors found in Patch Debugger.
 
   BUILD_OTHER_CONFIG: "false" # Merge config files.
-  MERGE_CONFIG_FILES: "vendor/debugfs.config,vendor/lahaina_QGKI.config"
+  MERGE_CONFIG_FILES: ""
 
   FREE_MORE_SPACE: "false" # if u want get more space, enabled it.
 
 jobs:
   build-kernel:
-    name: Redmi K20 Pro (Based-AOSP A15) (Soviet-Star-OSS)
+    name: Redmi note 10
     runs-on: ubuntu-latest # u can changed to ubuntu 22.04, and need container set ubuntu-latest
     # container: archlinux/archlinux:latest # if u need use arch linux -> archlinux/archlinux:latest or ubuntu 20.04 -> ubuntu:focal
     env:
